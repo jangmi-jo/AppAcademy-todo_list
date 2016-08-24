@@ -4,12 +4,13 @@ import { fetchTodos } from './util/todo_api_util';
 import configureStore from './store/store';
 import allTodos from './reducers/selector';
 import { requestTodos } from './actions/todo_actions';
+import Root from './components/root';
 
 window.allTodos = allTodos;
-window.store = configureStore();
+const store = window.store = configureStore();
 window.requestTodos = requestTodos;
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
-  ReactDOM.render(<h1>It worked</h1>, root);
+  ReactDOM.render(<Root store={store}/>, root);
 });
