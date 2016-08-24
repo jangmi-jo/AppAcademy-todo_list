@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Todo.create(title: 'eat', body: 'food', done: false)
+Todo.create(title: 'sleep', body: 'more', done: false)
+Todo.create(title: 'drink', body: 'water', done: true)
+Todo.create(title: 'go', body: 'home', done: true)
+Todo.create(title: 'rest', body: 'well', done: false)
