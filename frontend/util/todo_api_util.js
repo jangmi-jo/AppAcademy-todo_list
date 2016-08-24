@@ -6,6 +6,17 @@ const fetchTodos = (success, error) => {
     error
   });
 };
-// window.fetchTodos = fetchTodos;
 
-export default fetchTodos;
+const createTodo = (todo, success, error) => {
+  $.ajax({
+    method: 'POST',
+    url: 'api/todos',
+    data: { todo },
+    success,
+    error
+  });
+};
+
+
+
+export { fetchTodos, createTodo };

@@ -1,4 +1,5 @@
 import { TODO_CONSTANTS } from '../actions/todo_actions';
+import merge from 'lodash/merge';
 
 const defaultState = {
   "1": {
@@ -22,6 +23,10 @@ const TodosReducer = (oldState = defaultState, action) => {
       let todos = {};
       action.todos.forEach((el) => {todos[el.id] = el;});
       return todos;
+    case TODO_CONSTANTS.RECEIVE_TODO:
+      let newState = merge({}, oldState);
+      newState[action.todo.id] = action.todo;
+      return newState;
     default:
       return oldState;
   }

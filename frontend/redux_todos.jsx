@@ -3,12 +3,13 @@ import React from 'react';
 import { fetchTodos } from './util/todo_api_util';
 import configureStore from './store/store';
 import allTodos from './reducers/selector';
-import { requestTodos } from './actions/todo_actions';
+import { requestTodos, createTodo } from './actions/todo_actions';
 import Root from './components/root';
 
 window.allTodos = allTodos;
 const store = window.store = configureStore();
 window.requestTodos = requestTodos;
+window.createTodo = createTodo;
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
