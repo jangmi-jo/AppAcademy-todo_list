@@ -1,23 +1,44 @@
 import React from 'react';
+import TodoDetailView from './todo_detail_view';
 
-const TodoListItem = ({item, toggleTodo, destroyTodo}) => {
-  let buttonText = (item.done) ? "Cancel Mark" : "Completed!";
-  let toggleHandler= () => {
-    item.done = !item.done;
-    toggleTodo(item);
-  };
+class TodoListItem extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      detail: false
+    };
+  }
 
-  let destroyHandler= () => {
-    destroyTodo(item);
-  };
+  toggleHandler() {
+    this.props.item.done = !this.props.item.done;
+    this.props.toggleTodo(this.props.item);
+  }
 
-  return (
-    <li>
-      {item.title}
-      <button onClick={toggleHandler}>{buttonText}</button>
-      <button onClick={destroyHandler}>Delete Item</button>
-    </li>
-  );
-};
+  destroyHandler() {
+    this.props.destroyTodo(this.props.item);
+  }
+
+  toggleDetail() {
+    this.setState({
+      detail: !this.state.detail
+    });
+  }
+
+  render() {
+    let buttonText = (this.props.item.done) ? "Cancel Mark" : "Completed!";
+    let details = "";
+    if (this.state.detail) {
+      details = <TodoDetailView item={this.props.item}
+            destroyHandler={this.destroyHandler.bind(this)}/>;
+      }
+    return (
+      <li>
+        <span onClick={this.toggleDetail.bind(this)}>{this.props.item.title}</span>
+        <button onClick={this.toggleHandler.bind(this)}>{buttonText}</button>
+          {details}
+      </li>
+    );
+  }
+}
 
 export default TodoListItem;

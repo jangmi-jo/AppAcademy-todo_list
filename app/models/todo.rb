@@ -11,4 +11,5 @@
 #
 
 class Todo < ActiveRecord::Base
+  has_many :steps
 end
