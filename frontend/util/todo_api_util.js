@@ -17,6 +17,25 @@ const createTodo = (todo, success, error) => {
   });
 };
 
+const updateTodo = (todo, success, error) => {
+  $.ajax({
+    method: 'PATCH',
+    url: `api/todos/${todo.id}`,
+    data: { todo },
+    success,
+    error
+  });
+};
+
+const destroyTodo = (todo, success, error) => {
+  $.ajax({
+    method: 'DELETE',
+    url: `api/todos/${todo.id}`,
+    success,
+    error
+  });
+};
 
 
-export { fetchTodos, createTodo };
+
+export { fetchTodos, createTodo, updateTodo, destroyTodo };

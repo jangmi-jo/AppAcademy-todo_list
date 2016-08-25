@@ -27,6 +27,14 @@ const TodosReducer = (oldState = defaultState, action) => {
       let newState = merge({}, oldState);
       newState[action.todo.id] = action.todo;
       return newState;
+    case TODO_CONSTANTS.REMOVE_TODO:
+      let newRemoveState = {};
+      Object.keys(oldState).forEach(id => {
+        if (id !== action.todo.id.toString()) {
+          newRemoveState[id] = oldState[id];
+        }
+      });
+      return newRemoveState;
     default:
       return oldState;
   }
